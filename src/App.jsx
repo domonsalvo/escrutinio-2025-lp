@@ -5,26 +5,25 @@ import Resumen from './components/Resumen.jsx'
 
 export default function App(){
   const [vista, setVista] = useState('carga')
-  const tab = (id, label) => (
-    <button onClick={()=>setVista(id)} className={`px-4 py-2 rounded ${vista===id?'bg-black text-white':'bg-gray-200'}`}>{label}</button>
-  )
+
   return (
-    <div className="min-h-screen">
-      <header className="py-6 border-b">
-        <div className="max-w-6xl mx-auto flex flex-col items-center">
-          <img src="https://www.cosedo.com.ar/logo_pro_app.png" alt="logo" className="h-20 mb-2" />
-          <h1 className="text-2xl font-bold">Escrutinio 2025 - La Pampa</h1>
-          <nav className="mt-4 flex gap-2">
-            {tab('carga','Cargar Datos')}
-            {tab('resultados','Ver Resultados')}
-            {tab('resumen','Resumen General')}
-          </nav>
+    <div>
+      <header className="header">
+        <div className="container center">
+          <img className="logo" src="https://www.cosedo.com.ar/logo_pro_app.png" alt="Logo" />
+          <div className="title">Escrutinio 2025 - La Pampa</div>
+          <div className="tabs">
+            <button className={`tab ${vista==='carga'?'active':''}`} onClick={()=>setVista('carga')}>Cargar Datos</button>
+            <button className={`tab ${vista==='resultados'?'active':''}`} onClick={()=>setVista('resultados')}>Ver Resultados</button>
+            <button className={`tab ${vista==='resumen'?'active':''}`} onClick={()=>setVista('resumen')}>Resumen General</button>
+          </div>
         </div>
       </header>
-      <main className="max-w-6xl mx-auto p-6">
-        {vista==='carga' && <Formulario/>}
-        {vista==='resultados' && <Resultados/>}
-        {vista==='resumen' && <Resumen/>}
+
+      <main className="container" style={{paddingTop: '20px'}}>
+        {vista==='carga' && <Formulario />}
+        {vista==='resultados' && <Resultados />}
+        {vista==='resumen' && <Resumen />}
       </main>
     </div>
   )
